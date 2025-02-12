@@ -13,7 +13,7 @@ services:
   db:
     image: mariadb:10.6.4-focal
     volumes:
-      - db_data:var/lib/mysql #This is where mariadb saves its data
+      - db_data:/var/lib/mysql #This is where mariadb saves its data
     env_file:
       - .env
     restart: on-failure
