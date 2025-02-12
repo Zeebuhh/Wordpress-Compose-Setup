@@ -57,13 +57,14 @@ services:
       - wordpress_data:/var/www/html #official data-path
     depends_on:
       - db
+    restart: on-failure
   db:
     image: mariadb:10.6.4-focal
     volumes:
       - db_data:/var/lib/mysql #official data-path
     env_file:
       - .env
-    restart: always
+    restart: on-failure
 
 volumes:
   db_data:
