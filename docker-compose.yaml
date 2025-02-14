@@ -1,0 +1,23 @@
+services:
+  wordpress:
+    image: wordpress:latest
+    ports:
+      - 8080:80
+    env_file:
+      - .env
+    volumes:
+      - wordpress_data:/var/www/html #This is where wordpress saves its data
+    depends_on:
+      - db
+    restart: on-failure
+  db:
+    image: mariadb:10.6.4-focal
+    volumes:
+      - db_data:/var/lib/mysql #This is where mariadb saves its data
+    env_file:
+      - .env
+    restart: on-failure
+
+volumes:
+  db_data:
+  wordpress_data:
