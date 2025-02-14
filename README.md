@@ -43,33 +43,9 @@ Before you begin, ensure you have the following installed:
 
 ### Docker Compose File
 
-The `docker-compose.yaml` file defines the services:
-
-```yaml
-services:
-  wordpress:
-    image: wordpress:latest
-    ports:
-      - 8080:80
-    env_file:
-      - .env
-    volumes:
-      - wordpress_data:/var/www/html #official data-path
-    depends_on:
-      - db
-    restart: on-failure
-  db:
-    image: mariadb:10.6.4-focal
-    volumes:
-      - db_data:/var/lib/mysql #official data-path
-    env_file:
-      - .env
-    restart: on-failure
-
-volumes:
-  db_data:
-  wordpress_data:
-```
+- The [docker-compose.yaml](./docker-compose.yaml) file defines the services for example `wordpress` and `db`.
+- The `wordpress` service depends on `db` to ensure the database is active **before** the `wordpress` service
+- Both services share the same `.env` file to store environmentals
 
 ### Explanation of Services
 
